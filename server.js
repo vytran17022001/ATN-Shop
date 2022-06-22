@@ -13,7 +13,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 		console.log('Connected to Database')
     
 		const db = client.db('Database-Asm2-1644')
-		const quotesCollection = db.collection('Product')
+		const productsCollection = db.collection('Product')
 
 		// Make sure you place body-parser before your CRUD handlers!
 		app.use(bodyParser.urlencoded({ extended: true }))
@@ -27,7 +27,7 @@ MongoClient.connect(connectionString, { useUnifiedTopology: true })
 
 		// get <form action="/quotes" method="POST"> from index.html after submission
 		app.post('/AddProduct', (req, res) => {
-		  quotesCollection.insertOne(req.body)
+		  productsCollection.insertOne(req.body)
 			.then(result => {
 			  res.redirect('/')
 			})
